@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<script src='/static/js/audiojs.js' defer>
+</script>
+<style>
+    .fa-regular {
+        color: black;
+    }
+
+    .fa-regular:hover{
+        color: sienna;
+    }
+
+    .list-unstyled > li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+    }
+
+    .btn-primary {
+        background-color: lightseagreen !important;
+        border-color:lightseagreen !important;
+        padding:8px 10px 5px 10px !important;
+    }
+
+    .btn-primary:hover {
+    background-color:sienna !important;
+    border-color: sienna !important;
+    }
+
+
+</style>
+{% endblock %}
+
+{% block title %}Top 15 Recommendations{% endblock %}
+
+{% block body %}
+<center>
+    <br>
+        <h3><b>Your Recommended Tracks:</b></h3>
+    <h4>
+    <div class="container">
+        <p><p>
+        <ul class="list-unstyled">
+            <p>
+            {% if 'succeed' in msg %}
+                {% for track in tracks_list %}
+                    <li>{{ track['name'] }} - {{ track['artists'] }}
+                    {% if track['track_url'] is not none and 'succeed' in msg %}
+                        <div class="fake-player">
+                            <button id="play-button" class="play" style="background-color:transparent;border-color:transparent"><i id="play" class="fa-regular fa-circle-play"><audio id = "player">
+                                <source src="{{ track['track_url'] }}" preload="auto">
+                                Your browser does not support the audio element.
+                            </audio></i></button>
+                        </div>
+                    {% endif %}</li><br>
+                {% endfor %}
+                <form action = "\create" method = "post">
+                    <button type="submit" name = "song" class="btn btn-primary spotify_button" id="" style="" value = "create playlist">Create Playlist <i class="fab fa-spotify"></i></button>
+                {% if 'Playlist created.' in message %}
+                    <div class = "alert alert-success alert-dismissible fade show" role="alert">
+                        <ul>
+                            <li>{{message}}</li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class = "alert alert-success alert-dismissible fade show" role="alert">
+                        <ul>
+                            <li>{{message}}</li>
+                        </ul>
+                    </div>
+                {% endif %}
+            {% else %}
+                <p>Apologies. Something went wrong.</p>
+            {% endif %}
+        </ul>
+    <br />
+{% endblock %}

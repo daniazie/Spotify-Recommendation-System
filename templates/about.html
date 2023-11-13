@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<h2>About</h2>
+<p>In this project, I created a music recommendation system using the Spotify API based on a <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks">user's top tracks within the last 4 weeks</a>. Users can (and quite frankly, most likely will) get song recommendations from all over the world.</p>
+<h3>How It Works</h3>
+<p>After getting a user's top tracks, I used <a href="https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks">this</a> dataset from Kaggle to recommend songs by calculating a vector with songs from a user's top tracks that overlaps with those in the dataset, then using cosine similarity to calculate the similarity between songs in the vector and those in the dataset. 15 songs with the highest similarity are then recommended to the user.</p>
+<p>Users can also listen to previews of the songs (except for those that do not have preview urls) and create a playlist with those 15 songs if they'd like.</p>
+<p>However, the dataset I used only features songs from 1921-2020, so users will be unable to be recommended songs that were released after the year 2020. Also, since the calculation is done purely based on audio features, users will also get songs from many other languages.</p>
+{% endblock %}

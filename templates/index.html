@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    
+    .vertical-align {
+        display: table-cell;
+        width: 750px;
+        height: 500px;
+        padding: 10px;
+        vertical-align: middle;
+    }
+
+    .btn-primary {
+        font-size: 15px !important;
+        background-color: lightseagreen !important;
+        border-color:lightseagreen !important;
+        padding:8px 10px 5px 10px !important;
+    }
+
+    .btn-primary:hover {
+    background-color:sienna !important;
+    border-color: sienna !important;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<center>
+<div class="vertical-align">
+<p> Get recommendations from songs all around the world</p><p> based on your Spotify top tracks!</p>
+<br>
+<div class="get-recs">
+    <form action = "\go" method = "get">
+        <button type="submit" class="btn btn-primary" style="">Get Recommendations <i class="fab fa-spotify"></i></button>
+</div>
+</div>
+</center>
+{% endblock %}
